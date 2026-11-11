@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 450" font-family="Helvetica, Arial, sans-serif" xmlns:c2pa="http://c2pa.org/manifest">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker>
+<pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#fff"/><line x1="0" y1="0" x2="0" y2="6" stroke="#b9bec7" stroke-width="2"/></pattern></defs>
+<rect width="1200" height="450" fill="#fff"/>
+<rect x="10" y="10" width="290" height="430" rx="14" fill="#fafbfd" stroke="#d5dae6"/>
+<circle cx="34" cy="34" r="10" fill="none" stroke="#222" stroke-width="1.6"/>
+<text x="34" y="39.5" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#222" font-weight="700">1</text>
+<text x="50" y="40" font-family="Helvetica, Arial, sans-serif" font-size="18" text-anchor="start" fill="#222" font-weight="700">Decision variable</text>
+<text x="24" y="62" font-family="Helvetica, Arial, sans-serif" font-size="12.5" text-anchor="start" fill="#555" font-weight="400">each robot gives each task a priority level k;</text>
+<text x="24" y="78" font-family="Helvetica, Arial, sans-serif" font-size="12.5" text-anchor="start" fill="#555" font-weight="400">sorting by k gives its task order</text>
+<rect x="322" y="10" width="240" height="430" rx="14" fill="#fafbfd" stroke="#d5dae6"/>
+<circle cx="346" cy="34" r="10" fill="none" stroke="#222" stroke-width="1.6"/>
+<text x="346" y="39.5" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#222" font-weight="700">2</text>
+<text x="362" y="40" font-family="Helvetica, Arial, sans-serif" font-size="18" text-anchor="start" fill="#222" font-weight="700">Coalition formation</text>
+<text x="336" y="62" font-family="Helvetica, Arial, sans-serif" font-size="12.5" text-anchor="start" fill="#555" font-weight="400">visit robots by priority (k = 0 first);</text>
+<text x="336" y="78" font-family="Helvetica, Arial, sans-serif" font-size="12.5" text-anchor="start" fill="#555" font-weight="400">add one only if it covers a missing skill</text>
+<rect x="584" y="10" width="230" height="430" rx="14" fill="#fafbfd" stroke="#d5dae6"/>
+<circle cx="608" cy="34" r="10" fill="none" stroke="#222" stroke-width="1.6"/>
+<text x="608" y="39.5" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#222" font-weight="700">3</text>
+<text x="624" y="40" font-family="Helvetica, Arial, sans-serif" font-size="18" text-anchor="start" fill="#222" font-weight="700">Global task order</text>
+<text x="598" y="62" font-family="Helvetica, Arial, sans-serif" font-size="12.5" text-anchor="start" fill="#555" font-weight="400">sort tasks by the mean priority k</text>
+<text x="598" y="78" font-family="Helvetica, Arial, sans-serif" font-size="12.5" text-anchor="start" fill="#555" font-weight="400">of their coalition</text>
+<rect x="836" y="10" width="354" height="430" rx="14" fill="#fafbfd" stroke="#d5dae6"/>
+<circle cx="860" cy="34" r="10" fill="none" stroke="#222" stroke-width="1.6"/>
+<text x="860" y="39.5" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#222" font-weight="700">4</text>
+<text x="876" y="40" font-family="Helvetica, Arial, sans-serif" font-size="18" text-anchor="start" fill="#222" font-weight="700">Schedule &amp; score</text>
+<text x="850" y="62" font-family="Helvetica, Arial, sans-serif" font-size="12.5" text-anchor="start" fill="#555" font-weight="400">simulate routes; each task starts once its whole coalition</text>
+<text x="850" y="78" font-family="Helvetica, Arial, sans-serif" font-size="12.5" text-anchor="start" fill="#555" font-weight="400">has arrived</text>
+<line x1="302" y1="235" x2="320" y2="235" stroke="#333" stroke-width="2" marker-end="url(#a)"/>
+<line x1="564" y1="235" x2="582" y2="235" stroke="#333" stroke-width="2" marker-end="url(#a)"/>
+<line x1="816" y1="235" x2="834" y2="235" stroke="#333" stroke-width="2" marker-end="url(#a)"/>
+<rect x="18" y="112" width="274" height="262" rx="8" fill="none" stroke="#b5bac4" stroke-width="1"/>
+<text x="155.0" y="134" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#444" font-weight="700">each robot's priority order</text>
+<rect x="28" y="168" width="50" height="26" rx="3" fill="#6B4FD8" stroke="#1f2328" stroke-width="1.5"/>
+<text x="44" y="187" font-family="Helvetica, Arial, sans-serif" font-size="15" text-anchor="middle" fill="#fff" font-weight="700">R1</text>
+<rect x="60" y="175" width="13" height="12" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="104" y="152" width="50" height="58" rx="6" fill="#fff" stroke="#1f2328" stroke-width="1.5"/>
+<text x="129.0" y="169" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1f2328" font-weight="700">T1</text>
+<rect x="114.5" y="175" width="13" height="9" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="130.5" y="175" width="13" height="9" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="109" y="189" width="40" height="16" rx="8" fill="#0f2e5c"/>
+<text x="129.0" y="201" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#fff" font-weight="700">k = 0</text>
+<line x1="156" y1="181.0" x2="166" y2="181.0" stroke="#333" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="168" y="152" width="50" height="58" rx="6" fill="#fff" stroke="#1f2328" stroke-width="1.5"/>
+<text x="193.0" y="169" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1f2328" font-weight="700">T3</text>
+<rect x="186.5" y="175" width="13" height="9" fill="#F4CF6B" stroke="#1f2328" stroke-width="1"/>
+<rect x="173" y="189" width="40" height="16" rx="8" fill="#0f2e5c"/>
+<text x="193.0" y="201" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#fff" font-weight="700">k = 0</text>
+<line x1="220" y1="181.0" x2="230" y2="181.0" stroke="#333" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="232" y="152" width="50" height="58" rx="6" fill="#fff" stroke="#1f2328" stroke-width="1.5"/>
+<text x="257.0" y="169" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1f2328" font-weight="700">T2</text>
+<rect x="242.5" y="175" width="13" height="9" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="258.5" y="175" width="13" height="9" fill="#F4CF6B" stroke="#1f2328" stroke-width="1"/>
+<rect x="237" y="189" width="40" height="16" rx="8" fill="#a9bcd8"/>
+<text x="257.0" y="201" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#fff" font-weight="700">k = 2</text>
+<rect x="28" y="240" width="66" height="26" rx="3" fill="#F08A1C" stroke="#1f2328" stroke-width="1.5"/>
+<text x="44" y="259" font-family="Helvetica, Arial, sans-serif" font-size="15" text-anchor="middle" fill="#fff" font-weight="700">R2</text>
+<rect x="60" y="247" width="13" height="12" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="76" y="247" width="13" height="12" fill="#F4CF6B" stroke="#1f2328" stroke-width="1"/>
+<rect x="104" y="224" width="50" height="58" rx="6" fill="#fff" stroke="#1f2328" stroke-width="1.5"/>
+<text x="129.0" y="241" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1f2328" font-weight="700">T2</text>
+<rect x="114.5" y="247" width="13" height="9" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="130.5" y="247" width="13" height="9" fill="#F4CF6B" stroke="#1f2328" stroke-width="1"/>
+<rect x="109" y="261" width="40" height="16" rx="8" fill="#0f2e5c"/>
+<text x="129.0" y="273" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#fff" font-weight="700">k = 0</text>
+<line x1="156" y1="253.0" x2="166" y2="253.0" stroke="#333" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="168" y="224" width="50" height="58" rx="6" fill="#fff" stroke="#1f2328" stroke-width="1.5"/>
+<text x="193.0" y="241" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1f2328" font-weight="700">T1</text>
+<rect x="178.5" y="247" width="13" height="9" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="194.5" y="247" width="13" height="9" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="173" y="261" width="40" height="16" rx="8" fill="#a9bcd8"/>
+<text x="193.0" y="273" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#fff" font-weight="700">k = 2</text>
+<line x1="220" y1="253.0" x2="230" y2="253.0" stroke="#333" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="232" y="224" width="50" height="58" rx="6" fill="#fff" stroke="#1f2328" stroke-width="1.5"/>
+<text x="257.0" y="241" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1f2328" font-weight="700">T3</text>
+<rect x="250.5" y="247" width="13" height="9" fill="#F4CF6B" stroke="#1f2328" stroke-width="1"/>
+<rect x="237" y="261" width="40" height="16" rx="8" fill="#a9bcd8"/>
+<text x="257.0" y="273" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#fff" font-weight="700">k = 2</text>
+<rect x="28" y="312" width="50" height="26" rx="3" fill="#2E9BE6" stroke="#1f2328" stroke-width="1.5"/>
+<text x="44" y="331" font-family="Helvetica, Arial, sans-serif" font-size="15" text-anchor="middle" fill="#fff" font-weight="700">R3</text>
+<rect x="60" y="319" width="13" height="12" fill="#F4CF6B" stroke="#1f2328" stroke-width="1"/>
+<rect x="104" y="296" width="50" height="58" rx="6" fill="#fff" stroke="#1f2328" stroke-width="1.5"/>
+<text x="129.0" y="313" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1f2328" font-weight="700">T1</text>
+<rect x="114.5" y="319" width="13" height="9" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="130.5" y="319" width="13" height="9" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="109" y="333" width="40" height="16" rx="8" fill="#4f73a8"/>
+<text x="129.0" y="345" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#fff" font-weight="700">k = 1</text>
+<line x1="156" y1="325.0" x2="166" y2="325.0" stroke="#333" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="168" y="296" width="50" height="58" rx="6" fill="#fff" stroke="#1f2328" stroke-width="1.5"/>
+<text x="193.0" y="313" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1f2328" font-weight="700">T2</text>
+<rect x="178.5" y="319" width="13" height="9" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="194.5" y="319" width="13" height="9" fill="#F4CF6B" stroke="#1f2328" stroke-width="1"/>
+<rect x="173" y="333" width="40" height="16" rx="8" fill="#4f73a8"/>
+<text x="193.0" y="345" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#fff" font-weight="700">k = 1</text>
+<line x1="220" y1="325.0" x2="230" y2="325.0" stroke="#333" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="232" y="296" width="50" height="58" rx="6" fill="#fff" stroke="#1f2328" stroke-width="1.5"/>
+<text x="257.0" y="313" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="middle" fill="#1f2328" font-weight="700">T3</text>
+<rect x="250.5" y="319" width="13" height="9" fill="#F4CF6B" stroke="#1f2328" stroke-width="1"/>
+<rect x="237" y="333" width="40" height="16" rx="8" fill="#4f73a8"/>
+<text x="257.0" y="345" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#fff" font-weight="700">k = 1</text>
+<text x="155.0" y="396" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555" font-weight="400">k = 0, 1, 2 (0 = highest); ties broken by task index</text>
+<rect x="336" y="106" width="212" height="84" rx="10" fill="#E8F5E8" stroke="#4EAF4E"/>
+<rect x="346" y="116" width="66" height="26" rx="3" fill="#fff" stroke="#1f2328" stroke-width="1.8"/>
+<text x="362" y="135" font-family="Helvetica, Arial, sans-serif" font-size="15" text-anchor="middle" fill="#1f2328" font-weight="700">T1</text>
+<rect x="378" y="123" width="13" height="12" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="394" y="123" width="13" height="12" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="436" y="118" width="30" height="22" rx="3" fill="#6B4FD8"/>
+<text x="451.0" y="134" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff" font-weight="700">R1</text>
+<path d="M445,154 L449,158 L457,149" fill="none" stroke="#2b9a3c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="476" y="118" width="30" height="22" rx="3" fill="#2E9BE6"/>
+<text x="491.0" y="134" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff" font-weight="700">R3</text>
+<path d="M486,149 L496,159 M496,149 L486,159" fill="none" stroke="#c0392b" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="516" y="118" width="30" height="22" rx="3" fill="#F08A1C"/>
+<text x="531.0" y="134" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff" font-weight="700">R2</text>
+<path d="M525,154 L529,158 L537,149" fill="none" stroke="#2b9a3c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="346" y="180" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="start" fill="#222" font-weight="700">coalition {R1, R2}</text>
+<rect x="336" y="202" width="212" height="84" rx="10" fill="#E8F5E8" stroke="#4EAF4E"/>
+<rect x="346" y="212" width="66" height="26" rx="3" fill="#fff" stroke="#1f2328" stroke-width="1.8"/>
+<text x="362" y="231" font-family="Helvetica, Arial, sans-serif" font-size="15" text-anchor="middle" fill="#1f2328" font-weight="700">T2</text>
+<rect x="378" y="219" width="13" height="12" fill="#86D9BF" stroke="#1f2328" stroke-width="1"/>
+<rect x="394" y="219" width="13" height="12" fill="#F4CF6B" stroke="#1f2328" stroke-width="1"/>
+<rect x="436" y="214" width="30" height="22" rx="3" fill="#F08A1C"/>
+<text x="451.0" y="230" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff" font-weight="700">R2</text>
+<path d="M445,250 L449,254 L457,245" fill="none" stroke="#2b9a3c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="346" y="276" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="start" fill="#222" font-weight="700">coalition {R2}</text>
+<rect x="336" y="298" width="212" height="84" rx="10" fill="#E8F5E8" stroke="#4EAF4E"/>
+<rect x="346" y="308" width="50" height="26" rx="3" fill="#fff" stroke="#1f2328" stroke-width="1.8"/>
+<text x="362" y="327" font-family="Helvetica, Arial, sans-serif" font-size="15" text-anchor="middle" fill="#1f2328" font-weight="700">T3</text>
+<rect x="378" y="315" width="13" height="12" fill="#F4CF6B" stroke="#1f2328" stroke-width="1"/>
+<rect x="436" y="310" width="30" height="22" rx="3" fill="#6B4FD8"/>
+<text x="451.0" y="326" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff" font-weight="700">R1</text>
+<path d="M446,341 L456,351 M456,341 L446,351" fill="none" stroke="#c0392b" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="476" y="310" width="30" height="22" rx="3" fill="#2E9BE6"/>
+<text x="491.0" y="326" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff" font-weight="700">R3</text>
+<path d="M485,346 L489,350 L497,341" fill="none" stroke="#2b9a3c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="346" y="372" font-family="Helvetica, Arial, sans-serif" font-size="14" text-anchor="start" fill="#222" font-weight="700">coalition {R3}</text>
+<rect x="592" y="118" width="214" height="216" rx="8" fill="none" stroke="#b5bac4" stroke-width="1"/>
+<text x="602" y="139" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="start" fill="#444" font-weight="700">global order</text>
+<text x="794" y="139" font-family="Helvetica, Arial, sans-serif" font-size="11.5" text-anchor="end" fill="#666" font-weight="400">mean k</text>
+<rect x="598" y="148" width="202" height="40" rx="7" fill="#E3F3F6" stroke="#2EC2D3"/>
+<text x="612" y="174" font-family="Helvetica, Arial, sans-serif" font-size="15" text-anchor="start" fill="#1f2328" font-weight="700">T2</text>
+<text x="644" y="174" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="start" fill="#333" font-weight="400">{R2}</text>
+<text x="790" y="174" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="end" fill="#222" font-weight="700">0</text>
+<line x1="699.0" y1="191" x2="699.0" y2="211" stroke="#333" stroke-width="1.8" marker-end="url(#a)"/>
+<rect x="598" y="214" width="202" height="40" rx="7" fill="#E3F3F6" stroke="#2EC2D3"/>
+<text x="612" y="240" font-family="Helvetica, Arial, sans-serif" font-size="15" text-anchor="start" fill="#1f2328" font-weight="700">T1</text>
+<text x="644" y="240" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="start" fill="#333" font-weight="400">{R1, R2}</text>
+<text x="790" y="240" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="end" fill="#222" font-weight="700">(0+2)/2 = 1</text>
+<line x1="699.0" y1="257" x2="699.0" y2="277" stroke="#333" stroke-width="1.8" marker-end="url(#a)"/>
+<rect x="598" y="280" width="202" height="40" rx="7" fill="#E3F3F6" stroke="#2EC2D3"/>
+<text x="612" y="306" font-family="Helvetica, Arial, sans-serif" font-size="15" text-anchor="start" fill="#1f2328" font-weight="700">T3</text>
+<text x="644" y="306" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="start" fill="#333" font-weight="400">{R3}</text>
+<text x="790" y="306" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="end" fill="#222" font-weight="700">1</text>
+<text x="699.0" y="360" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#555" font-weight="400">ties broken by task index</text>
+<rect x="888" y="122" width="284" height="50" fill="#f3f5f9"/>
+<rect x="850" y="132" width="32" height="24" rx="3" fill="#6B4FD8"/>
+<text x="866.0" y="150" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff" font-weight="700">R1</text>
+<rect x="888.0" y="139" width="71.0" height="8" fill="#6B4FD8" fill-opacity="0.35"/>
+<rect x="959.0" y="135" width="53.2" height="16" fill="url(#hatch)" stroke="#8a8f98" stroke-width="0.8"/>
+<rect x="1012.2" y="128" width="106.5" height="30" rx="2" fill="#6B4FD8" stroke="#1f2328" stroke-width="0.8"/>
+<text x="1065.5" y="148" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#fff" font-weight="700">T1</text>
+<rect x="1118.8" y="139" width="35.5" height="8" fill="#6B4FD8" fill-opacity="0.35"/>
+<rect x="888" y="180" width="284" height="50" fill="#fafbfd"/>
+<rect x="850" y="190" width="32" height="24" rx="3" fill="#F08A1C"/>
+<text x="866.0" y="208" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff" font-weight="700">R2</text>
+<rect x="888.0" y="197" width="44.4" height="8" fill="#F08A1C" fill-opacity="0.35"/>
+<rect x="932.4" y="186" width="71.0" height="30" rx="2" fill="#F08A1C" stroke="#1f2328" stroke-width="0.8"/>
+<text x="967.875" y="206" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#fff" font-weight="700">T2</text>
+<rect x="1003.4" y="197" width="8.9" height="8" fill="#F08A1C" fill-opacity="0.35"/>
+<rect x="1012.2" y="186" width="106.5" height="30" rx="2" fill="#F08A1C" stroke="#1f2328" stroke-width="0.8"/>
+<text x="1065.5" y="206" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#fff" font-weight="700">T1</text>
+<rect x="1118.8" y="197" width="44.4" height="8" fill="#F08A1C" fill-opacity="0.35"/>
+<rect x="888" y="238" width="284" height="50" fill="#f3f5f9"/>
+<rect x="850" y="248" width="32" height="24" rx="3" fill="#2E9BE6"/>
+<text x="866.0" y="266" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle" fill="#fff" font-weight="700">R3</text>
+<rect x="888.0" y="255" width="88.8" height="8" fill="#2E9BE6" fill-opacity="0.35"/>
+<rect x="976.8" y="244" width="97.6" height="30" rx="2" fill="#2E9BE6" stroke="#1f2328" stroke-width="0.8"/>
+<text x="1025.5625" y="264" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle" fill="#fff" font-weight="700">T3</text>
+<rect x="1074.4" y="255" width="35.5" height="8" fill="#2E9BE6" fill-opacity="0.35"/>
+<line x1="888" y1="300" x2="1178" y2="300" stroke="#333" stroke-width="1.3" marker-end="url(#a)"/>
+<line x1="888.0" y1="300" x2="888.0" y2="305" stroke="#333"/>
+<text x="888.0" y="318" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555" font-weight="400">0</text>
+<line x1="976.8" y1="300" x2="976.8" y2="305" stroke="#333"/>
+<text x="976.75" y="318" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555" font-weight="400">50</text>
+<line x1="1065.5" y1="300" x2="1065.5" y2="305" stroke="#333"/>
+<text x="1065.5" y="318" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555" font-weight="400">100</text>
+<line x1="1154.2" y1="300" x2="1154.2" y2="305" stroke="#333"/>
+<text x="1154.25" y="318" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#555" font-weight="400">150</text>
+<line x1="1012.2" y1="114" x2="1012.2" y2="236" stroke="#222" stroke-dasharray="4 3" stroke-width="1.2"/>
+<text x="1012.25" y="110" font-family="Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333" font-weight="400">R1 waits; T1 starts when R2 arrives</text>
+<line x1="1163.1" y1="122" x2="1163.1" y2="300" stroke="#c0392b" stroke-width="1.6"/>
+<text x="1159.125" y="294" font-family="Helvetica, Arial, sans-serif" font-size="11.5" text-anchor="end" fill="#c0392b" font-weight="700">makespan = 155</text>
+<rect x="898" y="323" width="16" height="14" rx="2" fill="#7d8592" stroke="#1f2328" stroke-width="0.8"/>
+<text x="920" y="334" font-family="Helvetica, Arial, sans-serif" font-size="11.5" text-anchor="start" fill="#444" font-weight="400">execute</text>
+<rect x="988" y="325" width="16" height="10" fill="url(#hatch)" stroke="#8a8f98" stroke-width="0.8"/>
+<text x="1010" y="334" font-family="Helvetica, Arial, sans-serif" font-size="11.5" text-anchor="start" fill="#444" font-weight="400">wait</text>
+<rect x="1058" y="327" width="16" height="6" fill="#7d8592" fill-opacity="0.35"/>
+<text x="1080" y="334" font-family="Helvetica, Arial, sans-serif" font-size="11.5" text-anchor="start" fill="#444" font-weight="400">travel</text>
+<rect x="896" y="368" width="234" height="42" rx="10" fill="#FDECEA" stroke="#D9796E"/>
+<text x="1013.0" y="395" font-family="Helvetica, Arial, sans-serif" font-size="17" text-anchor="middle" fill="#a93226" font-weight="700">J(x) = makespan</text>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTpkY2Y3MDY4MC00ZDY1LTQ0ODYtOWE3YS0xNzM2ZmZlNWI3YWYAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaHPHgkNbIgH+8aOEVARz1RAAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo1YmY3NjY5NC0yNWJkLTRjMzUtYmM2NC05ODE2YmQ5ODI4OGRscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNokN6wUe9ru/eloXr81oW6EwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggaMLuxQCrS4N8XumV0/R/Iwn2qjIWBfD/M5f+DM5A86OkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaJ7xH06m7h0Z8wMC79eUrXoAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIKnAtvavVlFaWa65rWWmWqBkO2YD7J4YkuEUB3D/81pqZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GVquZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmRjZjcwNjgwLTRkNjUtNDQ4Ni05YTdhLTE3MzZmZmU1YjdhZi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmNjNGNiOGM3LTFiODgtNGJhMS04Zjk4LTAxOGNmODk4YjM0N3JjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCBowu7FAKtLg3xe6ZXT9H8jCfaqMhYF8P8zl/4MzkDzo6JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggSO7SSJJ4Ya1uehi/dnIjW8R4JVmnwyK4Z/rlmJ4fkJOiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggHyiLVXIiI/AzRTQqCM4n0AYUYpwzYY11gzROlLDp7DB0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQNI5dOVQCYRyjs1oWJsfN9NTHvTCkFkkyOtIpZqzAzFEk1GZ32xj9ucSNmSXEhcRKFNcfwhR49wuUHZtYiSMke8=</c2pa:manifest></metadata></svg>

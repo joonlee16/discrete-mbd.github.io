@@ -1,490 +1,327 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Discrete Model-Based Diffusion: a training-free, sampling-based optimizer that runs denoising diffusion directly over discrete decision variables, applied to heterogeneous multi-robot task allocation.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Discrete Model-Based Diffusion for Combinatorial Optimization in Multi-Robot Task Allocation">
+<meta property="og:description" content="A training-free, sampling-based optimizer that runs denoising diffusion directly over discrete decision variables, applied to heterogeneous multi-robot task allocation.">
+<meta property="og:url" content="https://joonlee16.github.io/discrete-mbd.github.io/">
+<meta property="og:image" content="https://joonlee16.github.io/discrete-mbd.github.io/static/images/teaser_poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<title>Discrete Model-Based Diffusion for Combinatorial Optimization in Multi-Robot Task Allocation</title>
+<style>
+* { box-sizing: border-box; }
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+body {
+  font-family: "Arial", "Helvetica", sans-serif;
+  margin: 0;
+  background: #ffffff;
+  color: #333;
+  line-height: 1.6;
+  font-size: 20px;
+}
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+.container { max-width: 1150px; margin: auto; padding: 50px 35px; }
 
-    gtag('js', new Date());
+h1 { text-align: center; font-size: 42px; line-height: 1.2; font-weight: 700; margin-bottom: 25px; color: #222; }
+h2 { margin-top: 65px; margin-bottom: 25px; font-size: 32px; font-weight: 700; color: #222; }
 
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
+.authors { text-align: center; font-size: 21px; margin-top: 15px; margin-bottom: 6px; }
+.author { display: inline-block; margin: 0 12px; color: #2a4dc7; }
+.affiliation sup, .author sup { font-size: 12px; }
+.affiliation { text-align: center; font-size: 17px; color: #666; margin-bottom: 30px; }
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+.buttons { text-align: center; margin: 35px 0; }
+.button {
+  display: inline-block; padding: 12px 28px; margin: 6px; border-radius: 8px;
+  background: #222; color: white; text-decoration: none; font-size: 17px; transition: 0.2s ease;
+}
+.button:hover { background: #555; transform: translateY(-2px); }
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+.figure { text-align: center; margin-top: 30px; }
+.figure img, .figure video {
+  width: 100%; max-width: 1100px; border-radius: 12px;
+  box-shadow: 0px 4px 18px rgba(0,0,0,0.12);
+}
+.caption { text-align: center; font-size: 15px; color: #666; margin-top: 12px; }
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+.abstract { font-size: 20px; line-height: 1.8; text-align: justify; margin-top: 20px; }
+
+.tldr {
+  max-width: 1000px; margin: 40px auto; padding: 26px 30px;
+  background: linear-gradient(135deg, #fafafa, #f2f5ff);
+  border: 1px solid #d9e2ff; border-left: 6px solid #4f6df5; border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+.tldr-title { font-size: 18px; font-weight: 700; color: #4f6df5; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+
+.steps { margin: 25px 0 0 0; padding-left: 0; list-style: none; counter-reset: s; }
+.steps li { position: relative; padding-left: 48px; margin-bottom: 16px; }
+.steps li::before {
+  counter-increment: s; content: counter(s);
+  position: absolute; left: 0; top: 2px; width: 32px; height: 32px; border-radius: 50%;
+  background: #222; color: #fff; font-size: 16px; font-weight: 700; text-align: center; line-height: 32px;
+}
+
+.adv li { margin-bottom: 12px; }
+
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 25px; }
+.stat {
+  border: 1px solid #e3e3e3; border-radius: 14px; padding: 20px 22px; text-align: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+}
+.stat .num { font-size: 36px; font-weight: 700; color: #4f6df5; }
+.stat .txt { font-size: 16px; color: #555; line-height: 1.45; }
+
+@media (max-width: 900px) {
+  .container { padding: 35px 20px; }
+  h1 { font-size: 32px; }
+  h2 { font-size: 26px; }
+  .stat-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 500px) {
+  h1 { font-size: 26px; }
+  .button { display: block; margin: 10px auto; width: 80%; }
+  .abstract { font-size: 16px; }
+}
+table.quad { position: relative; left: -60px; width: auto; margin: 36px auto 0 auto; font-size: 24px; border-collapse: separate; border-spacing: 12px; }
+table.quad th, table.quad td { border: none; padding: 22px 44px; border-radius: 14px; text-align: center; }
+table.quad th { background: transparent; color: #555; }
+table.quad td { background: #f2f4f8; color: #333; font-weight: 600; }
+table.quad td.ours { background: #4f6df5; color: #fff; }
+.theorem { background: #f7f8fc; border: 1px solid #dfe4f2; border-radius: 12px; padding: 6px 18px; margin: 18px 0; overflow-x: auto; }
+.method-split { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 34px; align-items: start; margin-top: 10px; }
+.method-media { position: sticky; top: 20px; }
+.method-media video { width: 100%; border-radius: 12px; box-shadow: 0 4px 18px rgba(0,0,0,0.12); }
+.method-text p:first-child { margin-top: 0; }
+.method-text { font-size: 18px; }
+a.ref { color: #4f6df5; text-decoration: none; font-weight: 400; }
+a.ref:hover { text-decoration: underline; }
+table.quad td.ours a.ref { color: #fff; }
+ol.refs { font-size: 16px; color: #444; padding-left: 28px; }
+ol.refs li { margin-bottom: 8px; list-style: none; position: relative; }
+ol.refs li::before { content: "[" counter(list-item) "]"; position: absolute; left: -32px; color: #4f6df5; }
+@media (max-width: 900px) { table.quad { left: 0; }
+}
+@media (max-width: 900px) { .method-split { grid-template-columns: 1fr; } .method-media { position: static; } }
+.bench-videos { display: flex; flex-direction: column; gap: 28px; margin-top: 25px; }
+.bench-label { font-size: 17px; color: #444; margin-bottom: 8px; }
+.bench-label b { color: #4f6df5; }
+.bench video { width: 100%; border-radius: 12px; box-shadow: 0 4px 18px rgba(0,0,0,0.10); display: block; }
+
+pre { background: #f7f7f7; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 14px; line-height: 1.5; }
+</style>
 </head>
+
 <body>
+<div class="container">
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
+<h1>Discrete Model-Based Diffusion for Combinatorial Optimization in Multi-Robot Task Allocation</h1>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
-    </div>
+<div class="authors">
+  <span class="author">Haejoon Lee<sup>1</sup></span>
+  <span class="author">Thomas Marshall Vielmetti<sup>1</sup></span>
+  <span class="author">Xinyi Wang<sup>2</sup></span>
+  <span class="author">Dimitra Panagou<sup>1</sup></span>
+</div>
+<div class="affiliation">
+  <sup>1</sup>Robotics Department, University of Michigan, Ann Arbor &nbsp;&nbsp;
+  <sup>2</sup>Department of Mechanical Engineering, Oakland University
+</div>
 
-  </div>
-</nav>
+<div class="buttons">
+  <!-- TODO: replace with the arXiv link once it is live -->
+  <a class="button" href="https://arxiv.org/pdf/2611.13382">📄 Paper</a>
+  <a class="button" href="https://github.com/joonlee16/discrete-mbd">💻 Code (Generic Optimization)</a>
+  <a class="button" href="">🤖 Code (Heterogeneous MRTA)</a>
+  <a class="button" href="https://joonlee16.github.io/playground/discrete-mbd">▶️ Web Demo</a>
+</div>
+
+<div class="tldr">
+  <div class="tldr-title">TL;DR</div>
+  <b>Discrete Model-Based Diffusion (Discrete MBD)</b> is a training-free, sampling-based optimizer for
+  combinatorial optimization problems that performs denoising diffusion <i>directly over discrete decision variables</i>.
+  At every denoising step, it samples candidate solutions from categorical distributions and evaluates them with the cost function to steer the search toward low-cost solutions.
+</div>
 
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
-            <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
-            </span>
-          </div>
+<h2>The Problem: Heterogeneous Multi-Robot Task Allocation</h2>
+<div class="figure">
+  <img src="static/images/problem_mrta.svg" alt="Heterogeneous multi-robot coalition formation and scheduling">
+</div>
+<p class="abstract">
+  We consider $R$ heterogeneous robots and $T$ spatially distributed tasks, each requiring a set of capabilities.
+  A task may need a coalition of robots that must start it together, so coalition formation and scheduling must be
+  solved jointly. This falls into the XD[ST-MR-TA] category <a class="ref" href="#ref-1">[1]</a> (single-task robots, multi-robot tasks, time-extended assignment, with cross-schedule dependencies), where exact solvers scale poorly, so we
+  seek a fast solver that can re-plan online.
+</p>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span>
-          </div>
 
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
-            </div>
+<h2>Why Diffusion?</h2>
+<ul class="adv">
+  <li>Diffusion lets early iterations <b>explore</b> across the solution space, while later iterations <b>concentrate</b> on promising regions.</li>
+  <li>Model-Based Diffusion (MBD) <a class="ref" href="#ref-2">[2]</a>, a <b>training-free</b> counterpart of DDPM
+      <a class="ref" href="#ref-3">[3]</a>, uses diffusion to improve solution quality but is limited to <b>continuous</b> variables.
+      Discrete MBD extends it to <b>discrete</b> variables via D3PM <a class="ref" href="#ref-4">[4]</a>.</li>
+  <li>Unlike most diffusion-based combinatorial solvers, Discrete MBD needs <b>no training</b>.</li>
+</ul>
 
-          </div>
-        </div>
-      </div>
+<table class="quad">
+  <tr><th></th><th>Training</th><th>Training-free</th></tr>
+  <tr><th>Continuous</th><td>DDPM <a class="ref" href="#ref-3">[3]</a></td><td>MBD <a class="ref" href="#ref-2">[2]</a></td></tr>
+  <tr><th>Discrete</th><td>D3PM <a class="ref" href="#ref-4">[4]</a></td><td class="ours">Discrete MBD (ours)</td></tr>
+</table>
+
+
+<h2 id="method">Method Overview</h2>
+
+<div class="method-split">
+  <div class="method-media">
+    <video autoplay muted loop playsinline preload="auto" poster="static/images/teaser_poster.jpg">
+      <source src="static/videos/teaser_mrta_denoising.mp4" type="video/mp4">
+    </video>
+    <div class="caption">
+      Discrete MBD on a 4-robot, 6-task problem: sampled routes concentrate on one plan as denoising proceeds.
     </div>
   </div>
-</section>
+  <div class="method-text">
+    <p>
+      A solution is a one-hot matrix $x \in \{0,1\}^{N\times K}$ ($N$ variables, $K$ values each). Instead of training a network to perform denoising diffusion like D3PM
+      <a class="ref" href="#ref-4">[4]</a>, Discrete MBD uses the <b>cost function</b> to guide the denoising process.
+      It runs $M$ denoising steps; at step $i$, $\bar Q_i$ is the forward transition matrix that mixes each variable toward
+      the uniform distribution, $S_1$ and $S_2$ are the numbers of candidates sampled, and $\lambda$ is a temperature.
+    </p>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
-      </h2>
-    </div>
+    <ol class="steps">
+      <li><b>Start from a stationary distribution.</b> $x^{(M)}$ is drawn uniformly over the $K$ categories of every variable.</li>
+      <li><b>Estimate the denoising distribution.</b> Sample $S_1$ candidates from the proposal
+          $\varphi_i = \mathrm{Cat}\big(x^{(i)}\bar Q_i^\top\big)$. Weight each candidate by $p_0 \propto e^{-J/\lambda}$ and
+          combine with the closed-form posterior to get:
+          $$p_i\big(x^{(i-1)} \mid x^{(i)}\big) \approx \frac{\sum_{s} q\big(x^{(i-1)} \mid x^{(i)}, \tilde x_s\big)\, p_0(\tilde x_s)}{\sum_{s} p_0(\tilde x_s)}.$$</li>
+      <li><b>Greedy selection.</b> Draw $S_2$ more candidates from $p_i$ and keep the
+          lowest-cost one among all $S_1+S_2$ as $x^{(i-1)}$.</li>
+    </ol>
   </div>
-</section>
+</div>
 
 
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
+<h2>Intuition</h2>
+<p>
+  At its core, Discrete MBD repeatedly <b>updates a categorical distribution</b> over solutions until it <b>concentrates on an optimal one</b>.
+</p>
+<p>
+  Consider a two-variable binary quadratic program:
+</p>
+<div class="theorem">
+  $$\min_{y \in \{0,1\}^2} \; J(y) = y^\top Q y, \qquad
+  Q = \begin{bmatrix} 1 & -0.5 \\ -0.5 & 1 \end{bmatrix}.$$
+</div>
+<p>
+  The optimal solution is $y^\star = [0,0]^\top$ ($J = 0$). Running Discrete MBD gets us:
+</p>
+<div class="figure">
+  <video autoplay muted loop playsinline preload="metadata">
+    <source src="static/videos/example_heatmap.mp4" type="video/mp4">
+  </video>
+  <div class="caption">
+    Left: heatmaps of the probability of each solution under the proposal $\varphi_i$ and the update $p_i$ (★ marks the
+    optimal solution $y^\star$). Right: the probability each assigns to $y^\star$ over the denoising steps.
   </div>
-</section>
+</div>
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
 
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-    <!--/ Paper video. -->
+<h2 id="mrta">Application: Coalition Formation and Scheduling</h2>
+<p>
+  Sampling coalitions and routes directly mostly yields infeasible plans. Instead, we encode the problem by having each robot assign each task a
+  <b>priority level</b> (one categorical variable per robot-task pair), and a deterministic decoder turns <i>any</i>
+  sample into a feasible plan.
+</p>
+<div class="figure">
+  <img src="static/images/mrta_encoding.svg" alt="Priority-based encoding and decoding">
+  <div class="caption">
+    Decoding a 3-robot, 3-task example. ② Robots are visited by priority and added only if they cover a missing skill.
+    ③ Tasks are ordered by their coalition's mean priority. ④ Each task starts once its coalition arrives.
   </div>
-</section>
+</div>
+<ul class="adv">
+  <li><b>Feasible by construction:</b> no samples are wasted on constraint violations.</li>
+  <li><b>Shared task order:</b> rules out circular waiting between coalitions.</li>
+  <li><b>Trade-off:</b> the decoder is problem-specific.</li>
+</ul>
 
 
-<section class="section">
-  <div class="container is-max-desktop">
+<h2>Experimental Results</h2>
+<p>
+  We compare with sampling-based optimizers (SA, CEM, LNS, SMC) under the same encoding and sample budget, Gurobi (30 s)
+  on unconstrained integer quadratic and polynomial programs (UIQP, UPO), and an RL policy and CTAS-D on the
+  SA-BT, SA-AT, and MA-AT task-allocation benchmarks from HeteroMRTA <a class="ref" href="#ref-5">[5]</a>.
+</p>
 
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-
-
-    <!-- Concurrent Work. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Concurrent Work. -->
-
+<p>
+  The benchmarks differ in robot skills and task requirements: in SA, each robot species has a single skill, while in MA
+  a species can have several; in BT, each task needs at most one unit of each skill, while in AT it can need multiple.
+  Below, Discrete MBD solves one instance from each benchmark: the current plan is on the left, its schedule on the right,
+  and the best makespan so far is shown at the top as the denoising proceeds.
+</p>
+<div class="bench-videos">
+  <div class="bench">
+    <div class="bench-label"><b>SA-BT</b> &nbsp;·&nbsp; 9 robots, 3 species, 3 skills, 20 tasks</div>
+    <video autoplay muted loop playsinline preload="metadata">
+      <source src="static/videos/denoising_sa_bt.mp4" type="video/mp4">
+    </video>
   </div>
-</section>
-
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
-}</code></pre>
+  <div class="bench">
+    <div class="bench-label"><b>SA-AT</b> &nbsp;·&nbsp; 9 robots, 3 species, 3 skills, 20 tasks</div>
+    <video autoplay muted loop playsinline preload="metadata">
+      <source src="static/videos/denoising_sa_at.mp4" type="video/mp4">
+    </video>
   </div>
-</section>
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
-        </div>
-      </div>
-    </div>
+  <div class="bench">
+    <div class="bench-label"><b>MA-AT</b> &nbsp;·&nbsp; 9 robots, 3 species, 3 skills, 20 tasks</div>
+    <video autoplay muted loop playsinline preload="metadata">
+      <source src="static/videos/denoising_ma_at.mp4" type="video/mp4">
+    </video>
   </div>
-</footer>
+</div>
+
+<div class="stat-grid">
+  <div class="stat"><div class="num">17 / 18</div><div class="txt">UIQP / UPO settings where Discrete MBD is the best sampling-based optimizer</div></div>
+  <div class="stat"><div class="num">14 / 15</div><div class="txt">task-allocation settings where Discrete MBD is the best sampling-based optimizer</div></div>
+  <div class="stat"><div class="num">8 / 15</div><div class="txt">task-allocation settings where Discrete MBD is best overall, including RL and CTAS-D (second in the other 7)</div></div>
+</div>
+
+
+<h2>References</h2>
+<ol class="refs">
+  <li id="ref-1">G. A. Korsah, A. Stentz, and M. B. Dias, "A comprehensive taxonomy for multi-robot task allocation," <i>The International Journal of Robotics Research</i>, 32(12):1495-1512, 2013.</li>
+  <li id="ref-2">C. Pan, Z. Yi, G. Shi, and G. Qu, "Model-based diffusion for trajectory optimization," <i>Advances in Neural Information Processing Systems (NeurIPS)</i>, 2024.</li>
+  <li id="ref-3">J. Ho, A. Jain, and P. Abbeel, "Denoising diffusion probabilistic models," <i>Advances in Neural Information Processing Systems (NeurIPS)</i>, 2020.</li>
+  <li id="ref-4">J. Austin, D. D. Johnson, J. Ho, D. Tarlow, and R. van den Berg, "Structured denoising diffusion models in discrete state-spaces," <i>Advances in Neural Information Processing Systems (NeurIPS)</i>, 2021.</li>
+  <li id="ref-5">W. Dai, U. Rai, J. Chiun, Y. Cao, and G. Sartoretti, "Heterogeneous multi-robot task allocation and scheduling via reinforcement learning," <i>IEEE Robotics and Automation Letters</i>, 10(3):2654-2661, 2025. Code and benchmarks: <a href="https://github.com/marmotlab/HeteroMRTA">github.com/marmotlab/HeteroMRTA</a>.</li>
+</ol>
+
+
+<h2>Citation</h2>
+<pre>@misc{lee2026discrete,
+  title         = {Discrete Model-Based Diffusion for Combinatorial Optimization in Multi-Robot Task Allocation},
+  author        = {Lee, Haejoon and Vielmetti, Thomas Marshall and Wang, Xinyi and Panagou, Dimitra},
+  year          = {2026},
+  eprint        = {2611.13382},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  doi           = {10.48550/arXiv.2611.13382},
+  url           = {https://arxiv.org/abs/2611.13382}
+}</pre>
+
+
+</div>
 
 </body>
 </html>
